@@ -1,19 +1,130 @@
-// Menu Mobile
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navMenu.classList.toggle("active");
+// Sistema de Menu Mobile Robusto
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 Menu mobile carregando...');
+    
+    // Aguardar um pouco para garantir que tudo está carregado
+    setTimeout(() => {
+        inicializarMenuMobile();
+    }, 100);
 });
 
-// Fechar menu ao clicar em um link
-document.querySelectorAll(".nav-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-  });
-});
+function inicializarMenuMobile() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    console.log('📱 Inicializando menu mobile');
+    console.log('Hamburger encontrado:', hamburger);
+    console.log('NavMenu encontrado:', navMenu);
+    
+    if (!hamburger || !navMenu) {
+        console.error('❌ Elementos do menu não encontrados');
+        return;
+    }
+    
+    // Remover classes antigas
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    
+    // Evento touch para mobile
+    hamburger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        console.log('📱 Touch detectado no hamburger');
+        toggleMenu();
+    });
+    
+    // Evento click para desktop
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('🖱️ Click detectado no hamburger');
+        toggleMenu();
+    });
+    
+    // Função para alternar menu
+    function toggleMenu() {
+        const isActive = hamburger.classList.contains('active');
+        console.log('Menu estado anterior:', isActive ? 'aberto' : 'fechado');
+        
+        if (isActive) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            console.log('✅ Menu fechado');
+        } else {
+            hamburger.classList.add('active');
+            navMenu.classList.add('active');
+            document.body.classList.add('menu-open');
+            console.log('✅ Menu aberto');
+        }
+    }
+    
+    // Fechar menu ao clicar em links
+    const menuLinks = document.querySelectorAll('.nav-menu a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            console.log('🔗 Link clicado, fechando menu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+    
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(e) {
+        const isMenuOpen = navMenu.classList.contains('active');
+        const isClickInsideMenu = navMenu.contains(e.target);
+        const isClickOnHamburger = hamburger.contains(e.target);
+        
+        if (isMenuOpen && !isClickInsideMenu && !isClickOnHamburger) {
+            console.log('🖱️ Click fora do menu, fechando');
+            toggleMenu();
+        }
+    });
+    
+    // Prevenir scroll quando menu está aberto
+    let scrollPosition = 0;
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.target.classList.contains('active')) {
+                scrollPosition = window.pageYOffset;
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollPosition}px`;
+                document.body.style.width = '100%';
+            } else {
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, scrollPosition);
+            }
+        });
+    });
+    
+    observer.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
+    
+    console.log('✅ Menu mobile configurado com sucesso!');
+}
+
+// Adicionar estados de debug visuais
+if (window.location.hostname.includes('github.io')) {
+    console.log('🌐 Site rodando no GitHub Pages');
+    
+    // Adicionar indicador visual de debug
+    const debugIndicator = document.createElement('div');
+    debugIndicator.style.cssText = `
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: #ff0000;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 9999;
+    `;
+    debugIndicator.textContent = 'DEBUG MODE';
+    document.body.appendChild(debugIndicator);
+}
 
 // Validação e envio do formulário de contato
 const contactForm = document.getElementById("contactForm");
@@ -268,3 +379,4 @@ console.log(
   "%c📧 Contato: contato@alfaiatariaelegante.com.br",
   "color: #2c3e50;"
 );
+
