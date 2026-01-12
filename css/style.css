@@ -262,6 +262,101 @@ img {
   }
 }
 
+/* Menu Mobile - Estilos Corrigidos */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 999;
+        overflow-y: auto;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .hamburger {
+        display: flex;
+        z-index: 1000;
+        position: relative;
+    }
+    
+    /* Overlay quando menu está aberto */
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 998;
+    }
+    
+    /* Animação do hamburger */
+    .hamburger span {
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Itens do menu em mobile */
+    .nav-menu li {
+        margin: 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+        color: var(--accent-color);
+    }
+}
+
+/* Prevenir scroll no iOS quando menu aberto */
+body.menu-open {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Debug visual para mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        background-color: rgba(0,0,0,0.1);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .hamburger:active {
+        background-color: rgba(0,0,0,0.2);
+    }
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -843,3 +938,4 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
