@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medidas - Alfaiataria Elegante</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navegação -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <img src="imagem/Anlog.png" alt="Alfaiataria Elegante" class="logo" />
+          <h2>Alfaiataria Elegante</h2>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Início</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="medidas.html">Medidas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Medidas -->
+    <section class="measurements">
+      <div class="container">
+        <h1>Processo de Medidas</h1>
+
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Agendamento</h3>
+            <p>Entre em contato para agendar sua sessão de medições</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Medição</h3>
+            <p>Nosso especialista realizará todas as medidas necessárias</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Escolha</h3>
+            <p>Selecione tecidos, modelos e detalhes personalizados</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Produção</h3>
+            <p>Sua peça será confeccionada com precisão e cuidado</p>
+          </div>
+        </div>
+
+        <div class="measurement-form">
+          <h2>Formulário de Medidas</h2>
+          <p>Preencha os campos abaixo para agilizar seu atendimento:</p>
+
+          <form id="measurementForm">
+            <div class="form-group">
+              <label for="nome">Nome Completo:</label>
+              <input type="text" id="nome" name="nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input type="tel" id="telefone" name="telefone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="tipo-peca">Tipo de Peça:</label>
+              <select id="tipo-peca" name="tipo-peca" required>
+                <option value="">Selecione...</option>
+                <option value="terno">Terno Completo</option>
+                <option value="paleto">Paleto</option>
+                <option value="calça">Calça</option>
+                <option value="camisa">Camisa</option>
+                <option value="vestido">Vestido</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+
+            <h3>Medidas Básicas (em cm)</h3>
+            <div class="measurements-grid">
+              <div class="form-group">
+                <label for="ombro">Ombro:</label>
+                <input type="number" id="ombro" name="ombro" step="0.5" />
+              </div>
+              <div class="form-group">
+                <label for="peito">Peito:</label>
+                <input type="number" id="peito" name="peito" step="0.5" />
+              </div>
+              <div class="form-group">
+                <label for="cintura">Cintura:</label>
+                <input type="number" id="cintura" name="cintura" step="0.5" />
+              </div>
+              <div class="form-group">
+                <label for="quadril">Quadril:</label>
+                <input type="number" id="quadril" name="quadril" step="0.5" />
+              </div>
+              <div class="form-group">
+                <label for="comprimento-manga">Comprimento Manga:</label>
+                <input
+                  type="number"
+                  id="comprimento-manga"
+                  name="comprimento-manga"
+                  step="0.5"
+                />
+              </div>
+              <div class="form-group">
+                <label for="comprimento-calca">Comprimento Calça:</label>
+                <input
+                  type="number"
+                  id="comprimento-calca"
+                  name="comprimento-calca"
+                  step="0.5"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="observacoes">Observações Adicionais:</label>
+              <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="btn btn-primary">
+                Enviar Medidas
+              </button>
+              <a href="contato.html" class="btn btn-secondary"
+                >Agendar Medição Presencial</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Alfaiataria Elegante. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
